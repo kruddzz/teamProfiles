@@ -1,0 +1,23 @@
+{
+  "name": "teamprofiles",
+  "version": "1.0.0",
+  "description": "OOP and testing for week 10 homework",
+  "main": "app.js",
+  "scripts": {
+    "test": "test --verbose test/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kruddzz/teamProfiles.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kruddzz/teamProfiles/issues"
+  },
+  "homepage": "https://github.com/kruddzz/teamProfiles#readme",
+  "dependencies": {
+    "inquirer": "^7.3.0",
+    "jest": "^26.1.0"
+  }
+}
