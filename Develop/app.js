@@ -80,7 +80,39 @@ function teamBuilder() {
         });
       }
 
+      // create a funtion that presents engineer options
+        // must return to createTeam() function when done with answers
+        function addEngineer() {
+          inquirer.prompt([
+            {
+              type: "input",
+              name: "engineerName",
+              message: "What is your engineer's name?",
+            },
 
+            {
+              type: "input",
+              name: "engineerId",
+              message: "What is your engineer's id?",
+            },
+            {
+              type: "input",
+              name: "engineerEmail",
+              message: "What is your engineer's email?",
+            },
+
+            {
+              type: "input",
+              name: "engineerGithub",
+              message: "What is your engineer's GitHub username?",
+            }
+          ]).then(answers => {
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            teamMembers.push(engineer);
+            createTeam();
+          });
+        }
+      
   // initializes the create manager function
   createManager();
 }
