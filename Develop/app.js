@@ -12,12 +12,10 @@ const render = require("./lib/htmlRenderer");
 
 // Variables
 const teamMembers = [];
-const idArray= [];
 
 function teamBuilder() {
-
     function createManager() {
-      console.log("Please build your team");
+      console.log("Build your Team!!");
       inquirer.prompt([
         {
           type: "input",
@@ -47,12 +45,44 @@ function teamBuilder() {
       ]).then(answers => {
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
         teamMembers.push(manager);
-        idArray.push(answers.managerId);
+        // calls a function to create a team
         createTeam();
       });
     }
 
-    createManager(); 
+    // create a function to create rest of team
+      // function must also take user to appropriate class for next set of questions
+      function createTeam() {
+
+        inquirer.prompt([
+          {
+            type: "list",
+            name: "memberChoice",
+            message: "Which type of team member would you like to add?",
+            choices: [
+              "Engineer",
+              "Intern",
+              "No more Team Members"
+            ]
+          }
+          // use a switch statement to perform proper action based on user choice
+        ]).then(userChoice => {
+          switch(userChoice.memberChoice) {
+          case "Engineer":
+            addEngineer();
+            break;
+          case "Intern":
+            addIntern();
+            break;
+          default:
+            buildTeam();
+          }
+        });
+      }
+
+
+  // initializes the create manager function
+  createManager();
 }
 
 // initialize program
