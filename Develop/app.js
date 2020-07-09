@@ -44,6 +44,7 @@ function teamBuilder() {
         }
       ]).then(answers => {
         const manager = new Manager(answers.managerName, answers.managerId, answers.managerEmail, answers.managerOfficeNumber);
+        // pushes manager info to teamMembers array
         teamMembers.push(manager);
         // calls a function to create a team
         createTeam();
@@ -108,11 +109,49 @@ function teamBuilder() {
             }
           ]).then(answers => {
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            // pushes engineer info to teamMembers array
             teamMembers.push(engineer);
             createTeam();
           });
+        } 
+        // create an addIntern() function
+          // must present intern questions
+          // must return to create team() function when done with answers
+        function addIntern() {
+          inquirer.prompt([
+            {
+              type: "input",
+              name: "internName",
+              message: "What is your intern's name?",
+            },
+
+            {
+              type: "input",
+              name: "internId",
+              message: "What is your intern's id?",
+            },
+            
+            {
+              type: "input",
+              name: "internEmail",
+              message: "What is your intern's email?",
+              
+            },
+
+            {
+              type: "input",
+              name: "internSchool",
+              message: "What is your intern's school?",
+            }
+            
+          ]).then(answers => {
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            // push the intern info to the teamMembers array
+            teamMembers.push(intern);
+            createTeam();
+          });
         }
-      
+        
   // initializes the create manager function
   createManager();
 }
