@@ -14,6 +14,9 @@ const render = require("./lib/htmlRenderer");
 const teamMembers = [];
 
 function teamBuilder() {
+  // create a function that produces manager profile
+    // the function uses inquirer to ask manager questions
+    // then goes to a creatTeam() function to inquire on what type of team members to add
     function createManager() {
       console.log("Build your Team!!");
       inquirer.prompt([
@@ -96,6 +99,7 @@ function teamBuilder() {
               name: "engineerId",
               message: "What is your engineer's id?",
             },
+
             {
               type: "input",
               name: "engineerEmail",
@@ -114,9 +118,9 @@ function teamBuilder() {
             createTeam();
           });
         } 
-        // create an addIntern() function
-          // must present intern questions
-          // must return to create team() function when done with answers
+      // create an addIntern() function
+        // must present intern questions
+        // must return to create team() function when done with answers
         function addIntern() {
           inquirer.prompt([
             {
@@ -151,7 +155,17 @@ function teamBuilder() {
             createTeam();
           });
         }
-        
+
+      // create a buildTeam(function)
+        // function must create an output diectory folder if it already doesn't exist
+        // writes the teamMembers array in a html file and renders it to the appropriate areas on the html
+      function buildTeam() {
+        if (!fs.existsSync(OUTPUT_DIR)) {
+            fs.mkdirSync(OUTPUT_DIR)
+          }
+        fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+        }
+      
   // initializes the create manager function
   createManager();
 }
