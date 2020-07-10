@@ -32,7 +32,7 @@ function teamBuilder() {
             if (answer !== "") {
               return true;
             }
-            return "Please enter at least one character.";
+            return "You have to enter at least one character!";
           }
         },
         {
@@ -60,7 +60,7 @@ function teamBuilder() {
             if (pass) {
               return true;
             }
-            return "Enter a valid email address.";
+            return "Enter a valid email address!";
           }
         },
         {
@@ -125,31 +125,73 @@ function teamBuilder() {
               type: "input",
               name: "engineerName",
               message: "What is your engineer's name?",
+              validate: answer => {
+                if (answer !== "") {
+                  return true;
+                }
+                return "You have to enter at least one character!";
+              }
             },
-
             {
               type: "input",
               name: "engineerId",
               message: "What is your engineer's id?",
+              validate: answer => {
+                const pass = answer.match(
+                  /^[1-9]\d*$/
+                );
+                if (pass) {
+                  if (idArray.includes(answer)) {
+                    return "ID already taken. Enter a different number!";
+                  } else {
+                    return true;
+                  }
+                              
+                }
+                return "You have to enter a positive number greater than zero!";
+              }
             },
-
             {
               type: "input",
               name: "engineerEmail",
               message: "What is your engineer's email?",
+              validate: answer => {
+                const pass = answer.match(
+                  /\S+@\S+\.\S+/
+                );
+                if (pass) { 
+                  if (emailArray.includes(answer)) {
+                  return "Email already used. Please enter a different email!";
+                } else {
+                  return true;
+                }
+              }
+                return "Please enter a valid email address!";
+              }
             },
-
             {
               type: "input",
               name: "engineerGithub",
               message: "What is your engineer's GitHub username?",
+              validate: answer => {
+                if (answer !== "") {
+                  if (githubArray.includes(answer)) {
+                    return "GitHub username already used. Please enter a different GitHub username!";
+                  } else {
+                  return true;
+                }
+              }
+                return "You have to enter at least one character!";
+              }
             }
           ]).then(answers => {
             const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
-            // pushes engineer info to teamMembers array
             teamMembers.push(engineer);
+            idArray.push(answers.engineerId);
+            emailArray.push(answers.engineerEmail);
+            githubArray.push(answers.engineerGithub);
             createTeam();
-          });
+          });      
         } 
       // create an addIntern() function
         // must present intern questions
