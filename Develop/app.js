@@ -243,7 +243,7 @@ function teamBuilder() {
                   return true;
                 }
               }
-                return "Please enter a valid email address!";
+                return "Enter a valid email address!";
               }
             },
             {
@@ -254,7 +254,7 @@ function teamBuilder() {
                 if (answer !== "") {
                   return true;
                 }
-                return "Please enter at least one character.";
+                return "You have to enter at least one character!";
               }
             }
           ]).then(answers => {
