@@ -40,15 +40,15 @@
 
   ## Test:
    
-  ![test](Assets\test.png)
+  ![test](Assets/test.png)
 
   ## Screenshot:
 
-  ![screenshot](Assets\teamProfile.png)
+  ![screenshot](Assets/teamProfile.png)
 
   ## Video
 
-  [![app gif](Assets\gif.gif)](https://www.youtube.com/watch?v=BcG59UuXiFY&feature=youtu.be)
+  [![app gif](Assets/gif.gif)](https://www.youtube.com/watch?v=BcG59UuXiFY&feature=youtu.be)
 
   ## Questions:
   
